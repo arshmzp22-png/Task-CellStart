@@ -1,199 +1,545 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CellStart | ChronoNAD+</title>
-    <style>
-        /* Reset & base styles */
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Adarsh Singh" />
+        <title>CellStart | ChronoNAD+ - Your Cellular Fuel</title>
+        <link rel="icon" href="Slide 4 Logo 1.png" />
+        <style>
+            /* Base Styles */
+            :root {
+                --primary-header: #002f5c; /* Brand Header Color */
+                --body-text: #0057a6; /* Brand Body Text Color */
+                --light-bg: #f5f9ff;
+                --white: #ffffff;
+                --accent: #2c8ef4;
+            }
 
-        body {
-        font-family: 'Poppins', sans-serif; /* Poppins not loaded externally, fallback to sans-serif */
-        color: #0057a6;
-        background: #f9fbfd;
-        line-height: 1.6;
-        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        h1, h2, h3 {
-        color: #002f5c;
-        font-weight: 600;
-        }
+            body {
+                font-family: 'Source Sans Pro', Arial, sans-serif;
+                background: var(--light-bg);
+                color: var(--body-text);
+                line-height: 1.6;
+            }
 
-        a.button {
-        display: inline-block;
-        background-color: #0057a6;
-        color: white;
-        padding: 12px 24px;
-        text-decoration: none;
-        border-radius: 6px;
-        font-weight: bold;
-        transition: background 0.3s;
-        }
+            .container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
 
-        a.button:hover {
-        background-color: #003f73;
-        }
+            /* Hero Section */
+            .hero {
+                background: linear-gradient(135deg, var(--primary-header), var(--accent));
+                color: var(--white);
+                padding: 100px 20px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
 
-        .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 40px 20px;
-        }
+            .hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.8;
+                z-index: 1;
+            }
 
-        .hero {
-        background: linear-gradient(to right, #e6f0fb, #f4f9ff);
-        text-align: center;
-        padding: 80px 20px;
-        }
+            .hero-content {
+                position: relative;
+                z-index: 2;
+            }
 
-        .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        }
+            .hero h1 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: 3.5rem;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
 
-        .hero p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-        }
+            .hero p {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 400;
+                font-size: 1.4rem;
+                max-width: 800px;
+                margin: 0 auto 30px auto;
+            }
+            .hero img {
+                max-width: 180px;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
 
-        .features, .how-it-works {
-        padding: 60px 20px;
-        background: #ffffff;
-        }
+            .hero-nav {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                z-index: 3;
+                text-align: right;
+            }
+            
+            .hero-nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: flex-end;
+                gap: 20px;
+            }
+            
+            .hero-nav a {
+                color: var(--white);
+                text-decoration: none;
+                font-family: 'Cabin', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                transition: color 0.3s ease;
+            }
 
-        .feature-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        }
+            .hero-nav a:hover {
+                color: var(--accent);
+            }
 
-        .feature {
-        flex: 1 1 300px;
-        background: #f1f7fe;
-        padding: 20px;
-        border-radius: 10px;
-        }
+            .cta-button {
+                display: inline-block;
+                background-color: var(--white);
+                color: var(--primary-header);
+                padding: 15px 40px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-family: 'Cabin', sans-serif;
+                font-weight: 700;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
 
-        .feature h3 {
-        margin-bottom: 10px;
-        }
+            .cta-button:hover {
+                background-color: var(--accent);
+                color: var(--white);
+                transform: translateY(-3px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
 
-        .mock-infographic {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 30px;
-        margin-top: 40px;
-        }
+            /* General Section Styling */
+            .section {
+                padding: 80px 0;
+                text-align: center;
+            }
 
-        .step {
-        flex: 1 1 200px;
-        text-align: center;
-        }
+            .section:nth-of-type(odd) {
+                background-color: var(--white);
+            }
 
-        .circle {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: #0057a6;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 1.2rem;
-        margin: 0 auto 10px;
-        }
+            .section h2 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                font-size: 2.8rem;
+                color: var(--primary-header);
+                margin-bottom: 40px;
+                position: relative;
+                display: inline-block;
+            }
+            
+            .section h2::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: -10px;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 4px;
+                background-color: var(--accent);
+                border-radius: 2px;
+            }
 
-        footer {
-        text-align: center;
-        padding: 30px 20px;
-        background: #e6f0fb;
-        font-size: 0.9rem;
-        }
+            .section p {
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 1.1rem;
+                max-width: 800px;
+                margin: 0 auto 20px auto;
+                color: #333;
+            }
 
-        @media (max-width: 768px) {
-        .hero h1 {
-            font-size: 2rem;
-        }
+            /* Benefits Section */
+            .benefits-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 50px;
+            }
 
-        .feature-grid {
-            flex-direction: column;
-        }
+            .benefit-card {
+                background: var(--light-bg);
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .mock-infographic {
-            flex-direction: column;
-        }
-        }
-    </style>
+            .benefit-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+            }
+
+            .benefit-card .icon {
+                font-size: 3rem;
+                color: var(--accent);
+                margin-bottom: 20px;
+            }
+
+            .benefit-card h3 {
+                font-family: 'Cabin', sans-serif;
+                font-weight: 600;
+                font-size: 1.5rem;
+                color: var(--primary-header);
+                margin-bottom: 15px;
+            }
+
+            .benefit-card p {
+                font-size: 1rem;
+                color: #555;
+                text-align: center;
+            }
+            
+            /* Product Section */
+            .product-section {
+                padding: 80px 0;
+                background-color: #f0f4f8; 
+            }
+
+            .product-container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                background-color: var(--white);
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                max-width: 1000px;
+                margin: 20px auto;
+                overflow: hidden;
+                text-align: left;
+                padding: 40px;
+            }
+            
+            .product-image {
+                flex: 1 1 40%;
+                min-width: 300px;
+                text-align: center;
+            }
+            
+            .product-image img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 15px;
+                object-fit: cover;
+            }
+            
+            .product-content {
+                flex: 1 1 50%;
+                min-width: 300px;
+            }
+            
+            .product-content h1 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: 2.5rem;
+                color: var(--primary-header);
+                margin-bottom: 20px;
+            }
+            
+            .product-content p {
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 1rem;
+                line-height: 1.6;
+                color: #555555;
+                max-width: none;
+                margin-bottom: 30px;
+            }
+            
+            .product-content .cta-button {
+                margin-top: 20px;
+            }
+
+            /* NAD+ Advantage Section */
+            .advantage-content {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 50px;
+                margin-top: 50px;
+                flex-wrap: wrap;
+            }
+
+            .advantage-text {
+                flex: 1;
+                min-width: 300px;
+                text-align: left;
+                max-width: 500px;
+            }
+
+            .advantage-text h3 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                font-size: 2rem;
+                color: var(--primary-header);
+                margin-bottom: 20px;
+            }
+
+            .advantage-text p {
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 1.1rem;
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+            .source {
+                font-size: 0.9rem;
+                color: #777;
+                margin-top: 10px;
+                font-style: italic;
+            }
+
+            .advantage-graphic {
+                flex: 1;
+                min-width: 300px;
+                position: relative;
+                padding: 20px;
+                background: var(--white);
+                border-radius: 15px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                max-width: 450px;
+            }
+
+            /* Infographic Section */
+            .infographic-section {
+                padding: 80px 0;
+                background-color: var(--light-bg);
+            }
+
+            .infographic-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .infographic-content-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 40px;
+                margin-top: 50px;
+                max-width: 1000px;
+                width: 100%;
+            }
+
+            .infographic-item {
+                flex: 1 1 45%; 
+                min-width: 300px;
+                max-width: 450px;
+                background-color: var(--white);
+                border-radius: 15px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .infographic-item img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 10px;
+                display: block;
+            }
+
+            /* Footer */
+            footer {
+                background: var(--primary-header);
+                color: var(--white);
+                text-align: center;
+                padding: 30px 20px;
+                margin-top: 60px;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 0.9rem;
+            }
+            /* Responsive Design */
+            @media (max-width: 900px) {
+                .hero h1 {
+                    font-size: 2.8rem;
+                }
+                .hero p {
+                    font-size: 1.2rem;
+                }
+                .section h2 {
+                    font-size: 2.2rem;
+                }
+            }
+            @media (max-width: 768px) {
+                .product-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .product-content {
+                    padding: 0;
+                }
+                .product-content .cta-button {
+                    align-self: center;
+                }
+                .infographic-content-wrapper {
+                    flex-direction: column;
+                    gap: 20px;
+                }
+                .infographic-item {
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .hero {
+                    padding: 80px 15px;
+                }
+                .hero-nav ul {
+                    justify-content: center;
+                }
+                .hero h1 {
+                    font-size: 2rem;
+                }
+                .hero p {
+                    font-size: 1rem;
+                }
+                .cta-button {
+                    padding: 12px 30px;
+                    font-size: 1rem;
+                }
+                .section {
+                    padding: 60px 0;
+                }
+                .section h2 {
+                    font-size: 1.8rem;
+                }
+                .benefits-grid {
+                    grid-template-columns: 1fr;
+                }
+                .advantage-content {
+                    flex-direction: column;
+                    gap: 30px;
+                }
+                .advantage-text, .advantage-graphic {
+                    max-width: 100%;
+                    min-width: unset;
+                }
+            }
+        </style>
     </head>
     <body>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="container">
-        <h1>Unlock Your Potential</h1>
-        <p>The key to a more vibrant you lies in your cells. ChronoNAD+ restores declining NAD+ levels, fueling your body from within.</p>
-        <a href="#" class="button">Fuel My Cells</a>
-        </div>
-    </section>
+        <section class="hero">
+            <nav class="hero-nav container">
+                <ul>
+                    <li><a href="#why-nad">Home</a></li>
+                    <li><a href="#product">Product</a></li>
+                    <li><a href="#graph">Graph</a></li>
+                    <li><a href="#advantage">Advantage</a></li>
+                </ul>
+            </nav>
+            <div class="hero-content container">
+                <img src="Slide 4 Logo 2.png" alt="CellStart Logo">
+                <h1>ChronoNAD+: Unlock Your Potential</h1>
+                <p>The key to a more vibrant you lies in your cells. Restore your cellular energy and vitality with CellStart's advanced formula.</p>
+            </div>
+        </section>
 
-    <!-- FEATURES / BENEFITS SECTION -->
-    <section class="features">
-        <div class="container">
-        <h2>The 1.7x Advantage</h2>
-        <p style="margin-bottom: 40px;">Combining NAD+ with Resveratrol can boost NAD+ levels in your body up to <strong>1.7x</strong> higher than NAD+ alone.</p>
+        <section id="why-nad" class="section">
+            <div class="container">
+                <h2>Why Is NAD+ Your Cellular Fuel?</h2>
+                <p>As we age, our NAD+ levels naturally decline, impacting our energy, mental clarity, and overall cellular function. ChronoNAD+ helps replenish these vital levels, empowering your cells to thrive.</p>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <span class="icon">⚡</span>
+                        <h3>Boost Cellular Energy</h3>
+                        <p>ChronoNAD+ is essential for converting food into energy, powering every cell in your body for sustained vitality throughout the day.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="icon">🧬</span>
+                        <h3>Support DNA Repair</h3>
+                        <p>Help your body’s natural mechanisms repair damaged DNA, maintaining genetic integrity and promoting long-term cellular health.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="icon">🛡️</span>
+                        <h3>Activate Longevity Genes</h3>
+                        <p>Enhance the activity of sirtuins, crucial proteins that support cellular defense and promote a youthful, vibrant state.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="product" class="product-section">
+            <div class="product-container container">
+                <div class="product-image">
+                    <img src="Slide 4 Product.png" alt="ChronoNAD+ Product Bottle" />
+                </div>
+                <div class="product-content">
+                    <h1>ChronoNAD+: <br> Daily Cellular Power-Ups</h1>
+                    <p>We strive to close the gaps of uncertainty with vitamins by creating scientifically-based formulas to support and enhance our consumers. We are dedicated to the research, development, and clinical validation of innovative synergistic formulas and technologies, to create maximum benefit to you.</p>
+                    <a href="#" class="cta-button">Shop Now 100$</a>
+                </div>
+            </div>
+        </section>
         
-        <div class="feature-grid">
-            <div class="feature">
-            <h3>Restore Cellular Energy</h3>
-            <p>Supports mitochondrial function to help you feel more energized throughout the day.</p>
+        <section id="graph" class="section">
+            <div class="container">
+                <h2>The ChronoNAD+ Advantage</h2>
+                <div class="advantage-content">
+                    <div class="advantage-text">
+                        <h3>Experience The 1.7x Advantage</h3>
+                        <p>Research shows that combining NAD+ with Resveratrol can boost NAD+ levels in our body up to <strong>1.7x higher</strong> than using NAD+ alone. ChronoNAD+ leverages this powerful synergy to maximize your cellular benefits.</p>
+                        <p class="source">Source: Jiang et al., Pharmacology Research & Perspectives, 2022</p>
+                    </div>
+                    <div class="advantage-graphic">
+                        <img src="Slide 8 Infographic 1.gif" alt="Graphical representation of NAD+ and Resveratrol synergy" style="width:100%; border-radius:10px; margin-top:10px;">
+                    </div>
+                </div>
             </div>
-            <div class="feature">
-            <h3>Age Gracefully</h3>
-            <p>Backed by research into NAD+ and cellular repair, ChronoNAD+ helps you stay youthful from within.</p>
-            </div>
-            <div class="feature">
-            <h3>Once-Daily Formula</h3>
-            <p>Simple, effective, and easy to integrate into your routine—just one capsule a day.</p>
-            </div>
-        </div>
+        </section>
 
-        <p style="font-size: 0.8rem; margin-top: 30px;">* Source: Journal of Advanced Cellular Health (mock citation)</p>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS SECTION -->
-    <section class="how-it-works">
-        <div class="container">
-        <h2>How ChronoNAD+ Works</h2>
-        <div class="mock-infographic">
-            <div class="step">
-            <div class="circle">1</div>
-            <p>NAD+ levels naturally decline with age.</p>
+        <section id="advantage" class="infographic-section">
+            <div class="container infographic-container">
+                <h2>Your Journey to Cellular Vitality Starts Here</h2>
+                <div class="infographic-content-wrapper">
+                    <div class="infographic-item">
+                    <p>Ready to reclaim your energy and support your cellular health? Join thousands who have transformed their lives with ChronoNAD+. Take the first step towards a more vibrant you today!</p>
+                    </div>
+                    <div class="infographic-item">
+                        <img src="Slide 8 Infographic 2.gif" alt="Animated infographic of cellular vitality" />
+                    </div>
+                </div>
             </div>
-            <div class="step">
-            <div class="circle">2</div>
-            <p>ChronoNAD+ delivers a powerful NAD+ + Resveratrol blend.</p>
-            </div>
-            <div class="step">
-            <div class="circle">3</div>
-            <p>Your cells regenerate with renewed energy and vitality.</p>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        &copy; 2025 CellStart. All rights reserved.
-    </footer>
+        </section>
+        <footer>
+        <p>&copy; 2025 CellStart | ChronoNAD+. All Rights Reserved.</p>
+        </footer>
 
     </body>
     </html>
